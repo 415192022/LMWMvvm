@@ -6,7 +6,7 @@ import com.lmw.lmwmvvm.pojo.bo.UserLoginBo
 class MainViewModel : MvvmBaseViewModel<MainModel, UserLoginBo>() {
 
     fun init(): MainViewModel {
-        model = MainModel()
+        model = MainModel().init()
         model.register(this)
         dataList?.value?.add(UserLoginBo())
         return this

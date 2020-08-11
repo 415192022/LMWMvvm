@@ -51,8 +51,6 @@ class MainActivity : MvvmActivity<ActivityMainBinding, MainViewModel>() {
     private fun setListener() {
         tvChange?.setOnClickListener {
             viewModel?.changeValue()
-            tvChange?.visibility = View.GONE
-            setCurrentItem(1)
         }
     }
 
@@ -113,5 +111,9 @@ class MainActivity : MvvmActivity<ActivityMainBinding, MainViewModel>() {
         mCurrentItem = position
         viewPage?.setCurrentItem(mCurrentItem, false)
         LogUtils.d("setCurrentItem: $position")
+    }
+
+    override fun isApplyStatusBarTranslucency(): Boolean {
+        return true
     }
 }

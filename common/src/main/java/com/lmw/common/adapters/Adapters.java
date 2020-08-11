@@ -8,16 +8,16 @@ import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.bumptech.glide.Glide;
 
 public class Adapters {
     @BindingAdapter("setVisible")
-    public static void setVisible(View view, String str) {
-        String mstr = str;
-        if ("true".equals(str)) {
+    public static void setVisible(View view, Boolean str) {
+        if (str) {
             view.setVisibility(View.VISIBLE);
         } else {
-            view.setVisibility(View.INVISIBLE);
+            view.setVisibility(View.GONE);
         }
     }
 

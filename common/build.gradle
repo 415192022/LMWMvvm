@@ -64,9 +64,6 @@ dependencies {
     //网络请求
     api 'com.github.415192022:LMWNetwork:0.1.1'
 
-    //工具类
-    api 'com.blankj:utilcodex:1.29.0'
-
     //音频录制
     api 'com.github.415192022:LMWAudioRecorder:0.0.1'
 

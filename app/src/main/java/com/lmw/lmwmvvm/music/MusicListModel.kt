@@ -1,4 +1,4 @@
-package com.lmw.lmwmvvm.home
+package com.lmw.lmwmvvm.music
 
 import com.lmw.base.customview.BaseCustomViewModel
 import com.lmw.base.model.MvvmBaseModel
@@ -9,7 +9,7 @@ import com.lmw.lmwmvvm.net.NewsApiInterface
 import com.lmw.lmwmvvm.pojo.bo.GuideBo
 import java.util.*
 
-class HomeModel : MvvmBaseModel<Test1BaseResponseNo, ArrayList<BaseCustomViewModel>>(
+class MusicListModel : MvvmBaseModel<Test1BaseResponseNo, ArrayList<BaseCustomViewModel>>(
     Test1BaseResponseNo::class.java, false, ""
 ) {
 

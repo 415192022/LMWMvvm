@@ -1,5 +1,8 @@
 package com.lmw.base.activity;
 
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +15,7 @@ import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.Observer;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -31,7 +35,13 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initViewModel();
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O && !setTranslucentTheme())
+            //android8.0如果同时设置透明主题+屏幕方向会导致崩溃
+            //设置屏幕竖屏
+            setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O)
+            initViewModel();
         performDataBinding();
         if (viewModel != null)
             getLifecycle().addObserver(viewModel);
@@ -127,4 +137,46 @@ public abstract class MvvmActivity<V extends ViewDataBinding, VM extends MvvmBas
     protected String getActivityTag() {
         return this.getClass().getSimpleName();
     }
+
+    /**
+     * set screen orientation
+     *
+     * @param screenOrientationPortrait
+     */
+    private void setScreenOrientation(int screenOrientationPortrait) {
+        setRequestedOrientation(screenOrientationPortrait);
+    }
+
+    public Boolean setTranslucentTheme() {
+        return true;
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        setTranslucentStatus(isApplyStatusBarTranslucency());
+    }
+
+    /**
+     * 设置沉浸式状态栏
+     *
+     * @param on
+     */
+    private void setTranslucentStatus(boolean on) {
+        if (on) {
+            BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
+            setBarTextColor();
+        }
+    }
+
+    private void setBarTextColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
+    /**
+     * 是否使用沉浸式
+     */
+    protected abstract boolean isApplyStatusBarTranslucency();
 }

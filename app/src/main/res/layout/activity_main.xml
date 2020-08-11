@@ -22,18 +22,19 @@
         android:layout_height="match_parent"
         tools:context=".ui.MainActivity">
 
-        <androidx.viewpager.widget.ViewPager
+        <com.lmw.common.widget.MotionlessViewPager
             android:id="@+id/viewPage"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </androidx.viewpager.widget.ViewPager>
+        </com.lmw.common.widget.MotionlessViewPager>
 
         <TextView
             android:id="@+id/tvChange"
             setText="@{viewModel.dataList.get(0).userId}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"></TextView>
+            android:gravity="center"
+            android:visibility="gone"></TextView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

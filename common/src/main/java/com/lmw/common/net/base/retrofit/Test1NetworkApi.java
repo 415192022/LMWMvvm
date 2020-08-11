@@ -65,13 +65,11 @@ public class Test1NetworkApi extends BaseNetworkApi {
 
     @Override
     public String getFormal() {
-        Toast.makeText(BaseNetworkApi.getApplication(), "正式环境", Toast.LENGTH_SHORT).show();
         return "http://service-o5ikp40z-1255468759.ap-shanghai.apigateway.myqcloud.com/";
     }
 
     @Override
     public String getTest() {
-        Toast.makeText(BaseNetworkApi.getApplication(), "测试环境", Toast.LENGTH_SHORT).show();
         return "http://service-o5ikp40z-1255468759.ap-shanghai.apigateway.myqcloud.com/";
     }
 }

@@ -1,5 +1,6 @@
 package com.lmw.lmwmvvm.main
 
+import androidx.lifecycle.MutableLiveData
 import com.lmw.base.model.MvvmBaseModel
 import com.lmw.common.net.base.retrofit.Test1NetworkApi
 import com.lmw.common.net.observer.TencentObserver
@@ -9,13 +10,15 @@ import com.lmw.lmwmvvm.pojo.bo.UserLoginBo
 import java.util.*
 
 class MainModel : MvvmBaseModel<Test1BaseResponseNo, ArrayList<UserLoginBo>>(
-    Test1BaseResponseNo::class.java, false, "") {
+    Test1BaseResponseNo::class.java, false, ""
+) {
 
+    var userLoginBo = UserLoginBo()
 
     override fun onSuccess(t: Test1BaseResponseNo?, isFromCache: Boolean) {
         var users: ArrayList<UserLoginBo> = arrayListOf()
-        var userLoginBo = UserLoginBo()
         userLoginBo?.userId = "" + Random().nextInt(1000)
+        userLoginBo?.isLoadSuccess = true
         users.add(userLoginBo)
         loadSuccess(t, users, false)
     }
@@ -42,5 +45,8 @@ class MainModel : MvvmBaseModel<Test1BaseResponseNo, ArrayList<UserLoginBo>>(
         load()
     }
 
+    fun init(): MainModel? {
+        return this
+    }
 
 }

@@ -15,7 +15,7 @@ import com.lmw.base.model.PagingResult;
 import java.util.List;
 
 public abstract class MvvmBaseViewModel<M extends MvvmBaseModel, D> extends ViewModel implements LifecycleObserver, IBaseModelListener<List<D>> {
-    protected M model;
+    public M model;
     public MutableLiveData<ObservableList<D>> dataList = new MutableLiveData();
     public MutableLiveData<ViewStatus> viewStatusLiveData = new MutableLiveData();
     public MutableLiveData<String> errorMessage = new MutableLiveData();
@@ -70,7 +70,7 @@ public abstract class MvvmBaseViewModel<M extends MvvmBaseModel, D> extends View
     @Override
     public void onLoadFail(MvvmBaseModel model, String prompt, PagingResult... pagingResult) {
         errorMessage.setValue(prompt);
-        if(model.isPaging() && !pagingResult[0].isFirstPage) {
+        if (model.isPaging() && !pagingResult[0].isFirstPage) {
             viewStatusLiveData.setValue(ViewStatus.LOAD_MORE_FAILED);
         } else {
             viewStatusLiveData.setValue(ViewStatus.REFRESH_ERROR);
