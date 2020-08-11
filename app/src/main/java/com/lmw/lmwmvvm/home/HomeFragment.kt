@@ -36,9 +36,9 @@ class HomeFragment : MvvmFragment<FragmentHomeBinding, HomeViewModel, BaseCustom
     )
 
     private val iconUnSelectIds = intArrayOf(
-        R.drawable.jetpack_hero,
-        R.drawable.jetpack_hero, R.drawable.jetpack_hero,
-        R.drawable.jetpack_hero, R.drawable.jetpack_hero
+        R.drawable.main_home,
+        R.drawable.main_community, R.drawable.main_notify,
+        R.drawable.main_user
     )
 
     companion object {
@@ -92,7 +92,6 @@ class HomeFragment : MvvmFragment<FragmentHomeBinding, HomeViewModel, BaseCustom
         mTabFragments?.add(MusicListFragment.newInstance(""))
         mTabFragments?.add(MusicListFragment.newInstance(""))
         mTabFragments?.add(MusicListFragment.newInstance(""))
-        mTabFragments?.add(MusicListFragment.newInstance(""))
     }
 
     private fun initViewPager() {
@@ -113,10 +112,9 @@ class HomeFragment : MvvmFragment<FragmentHomeBinding, HomeViewModel, BaseCustom
 
     private fun initTabLayout() {
         mTabs = arrayListOf()
-        mTabs?.add("首页")
-        mTabs?.add("藏品")
-        mTabs?.add("守艺")
-        mTabs?.add("圈子")
+        mTabs?.add("音乐")
+        mTabs?.add("视频")
+        mTabs?.add("文章")
         mTabs?.add("我的")
 
         viewDataBinding?.tabLayout?.setupWithViewPager(viewDataBinding?.viewPager)
