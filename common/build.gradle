@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+kapt {
+    useBuildCache = true
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //基类、架构
+    api project(path: ':base')
+
+    //路由
+    api 'com.github.415192022:LMWRouter:v0.0.1'
+
+    //下拉刷新
+    api 'com.github.415192022:LMWRefreLayout:v0.0.2'
+
+    //音视频播放器
+    api 'com.github.415192022:LMWPlayer:0.0.1'
+
+    //事件总线
+//    api 'com.github.415192022:FastBus:v0.0.6'
+//    annotationProcessor 'com.github.415192022.FastBus:processor:v0.0.6'
+//    kapt 'com.github.415192022.FastBus:processor:v0.0.6'
+
+    //网络请求
+    api 'com.github.415192022:LMWNetwork:0.1.1'
+
+    //工具类
+    api 'com.blankj:utilcodex:1.29.0'
+
+    //音频录制
+    api 'com.github.415192022:LMWAudioRecorder:0.0.1'
+
+    //mmkv
+    api 'com.tencent:mmkv:1.0.23'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
+    //bravh
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+
+    api "com.github.415192022:LMWLiveBus:0.0.1"
+
+
+}
